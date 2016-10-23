@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Leaflet Example</title>
+  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
+  <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+
+  <style>
+
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    
+    #map {
+      width: 100%;
+      height: 500px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div id="map"></div>
+
+  <script>
+
+    //Inicializa o mapa 
+    var map = L.map('map', {}).setView([-13.35, -51.08], 4);
+
+    L.tileLayer('http://{s}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png',
+    {
+      attribution: '&copy; <a href="http://www.thunderforest.com/">Thunderforest</a>, &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      maxZoom: 17,
+      minZoom : 4
+    }).addTo(map);
+    // Normal marker
+    L.marker([-18.35, -44.00]).addTo(map);
+  </script>
+  
+</body>
+</html>
