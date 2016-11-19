@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
+	<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+	<title>Adding a poliline</title>
+
+	  <style>
+		* {
+	    	margin: 0;
+	    	padding: 0;
+	    }
+	    
+	    #map {
+	    	width: 100%;
+	    	height: 500px;
+	    }
+
+	  </style>
+</head>
+<body>
+
+	<div id="map"></div>
+
+
+
+	<script>
+
+		var coolPlaces = new L.layerGroup();
+
+		L.marker([-41.29042, 174.78219]).bindPopup('Te PApa').addTo(coolPlaces);
+		L.marker([-41.29437, 174.78405]).bindPopup('Embasse Theater').addTo(coolPlaces);
+		L.marker([-41.2895, 174.77813]).bindPopup('Michael Foler').addTo(coolPlaces);
+		L.marker([-41.28313, 174.77736]).bindPopup('Starbucks').addTo(coolPlaces);
+
+		L.polyline([
+			[-41.28313, 174.77736],
+		    [-41.2895, 174.77803],
+		    [-41.29042, 174.78219],
+		    [-41.29437, 174.78405]
+		]).addTo(coolPlaces);
+
+		var osmLink = 'link 1',
+			thunLink = 'link 2';
+
+		var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+			osmAttrib = '&copy; ' + osmLink + ' Contributors',
+			landUrl = 'http://{s}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png',
+			thunAttrib = '&copy; '+osmLink+' Contributors & '+thunLink;
+
+		var osmMap = L.tileLayer(osmUrl, {attribution: osmAttrib}),
+			landMap = L.tileLayer(landUrl, {attribution: thunAttrib});
+
+		var map = L.map('map', {
+			layers: [osmMap]
+		}).setView([-41.2858, 174.78682], 14);
+
+		var baseLayers = {
+			'osm MapLink': osmMap,
+			'landscape': landMap
+		};
+
+		var overlays = {
+			'Interesting places': coolPlaces
+		};
+
+		L.control.layers(baseLayers, overlays).addTo(map);
+
+
+	</script>
+</body>
+</html>

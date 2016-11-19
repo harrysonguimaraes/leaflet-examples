@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
+	<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+	<title>Poliline Options</title>
+
+	  <style>
+		* {
+	    	margin: 0;
+	    	padding: 0;
+	    }
+	    
+	    #map {
+	    	width: 100%;
+	    	height: 500px;
+	    }
+
+	  </style>
+</head>
+<body>
+
+	<div id="map"></div>
+
+
+
+	<script>
+
+	var map = L.map('map').setView([-6.2, -49.08], 11);
+
+	L.tileLayer('http://{s}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png',
+    {
+      attribution: '&copy; <a href="http://www.thunderforest.com/">Thunderforest</a>, &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      maxZoom: 17,
+      minZoom : 4
+    }).addTo(map);
+
+    var linha = L.polyline([
+    	[-6.286, -48.796],
+    	[-6.281, -48.786],
+    	[-6.279, -48.776],
+    	[-6.290, -48.775],
+    	[-6.292, -48.788],
+    	], {
+    		color: 'red',
+    		weight: 10,
+    		opacity: .7,
+    		dashArray: '20,15',
+    		lineJoin: 'round'
+    	}).addTo(map).bindPopup('Olá').openPopup();
+
+	</script>
+</body>
+</html>

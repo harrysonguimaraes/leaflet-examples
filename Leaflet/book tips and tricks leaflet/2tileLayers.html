@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
+	<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+	<title>Adding a poliline</title>
+
+	  <style>
+		* {
+	    	margin: 0;
+	    	padding: 0;
+	    }
+	    
+	    #map {
+	    	width: 100%;
+	    	height: 500px;
+	    }
+
+	  </style>
+</head>
+<body>
+
+	<div id="map"></div>
+
+
+
+	<script>
+
+		var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+			osmAttrib = '&copy;  Contributors',
+			landUrl = 'http://{s}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png', 
+			thunAttrib = '&copy; Contributors';
+
+		var osmMap = L.tileLayer(osmUrl, {attribution: osmAttrib}),
+			landMap = L.tileLayer(landUrl, {attribution: thunAttrib});
+
+		var map = L.map('map', {
+			layers: [osmMap] // adiciona apenas um mapa. 
+		}).setView([-41.2858, 174.78682], 14);
+
+		var baseLayers = {
+			"OSM Mapnik": osmMap,
+        	"Landscape": landMap
+		};
+
+		L.control.layers(baseLayers).addTo(map);
+
+	</script>
+</body>
+</html>
